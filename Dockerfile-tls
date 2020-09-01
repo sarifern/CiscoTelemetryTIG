@@ -76,7 +76,9 @@ RUN wget http://dl.influxdata.com/telegraf/releases/telegraf_${TELEGRAF_VERSION}
 	dpkg -i telegraf_${TELEGRAF_VERSION}_${ARCH}.deb && rm telegraf_${TELEGRAF_VERSION}_${ARCH}.deb
 
 # Configure Telegraf
-COPY telegraf/telegraf.conf /etc/telegraf/telegraf.conf
+COPY telegraf/telegraf-tls.conf /etc/telegraf/telegraf.conf
+COPY telegraf/telegraf.pem /etc/telegraf/telegraf.pem
+COPY telegraf/telegraf.key /etc/telegraf/telegraf.key
 COPY telegraf/init.sh /etc/init.d/telegraf
 
 # Install chronograf

@@ -1,12 +1,9 @@
-# Docker Image with Telegraf (StatsD), InfluxDB and Grafana
 
-:facepunch: Battle-tested
+#Cisco Telemetry TIG Stack
 
-[![CircleCI](https://circleci.com/gh/samuelebistoletti/docker-statsd-influxdb-grafana.svg?style=svg)](https://circleci.com/gh/samuelebistoletti/docker-statsd-influxdb-grafana)
+Repository holding the files to build the Telemetry Stack (TIG) for NetDevOps Webinar
 
-## Versions
-
-### Warning, breaking change: upgrade from version 1.0.x of this image is not supported, all persisted data in volumes will be lost if you delete the container.
+This docker image contains the following versions:
 
 * Docker Image:      2.3.0
 * Ubuntu:            18.04
@@ -14,10 +11,19 @@
 * Telegraf (StatsD): 1.13.3-1
 * Grafana:           6.6.2
 
+##This Docker image was based upon the work of Samuele Bistoletti$
+##https://github.com/samuelebistoletti/docker-statsd-influxdb-grafana
+
 ## Quick Start
+To build the image:
+1) No TLS:
+docker image build -f Dockerfile-notls -t <your id>/<your name of image>:no-tls
+2) TLS:
+docker image build -f Dockerfile-tls -t <your id>/<your name of image>:tls
 
 To start the container the first time launch:
 
+No TLS
 ```sh
 docker run --ulimit nofile=66000:66000 \
   -d \
@@ -25,24 +31,21 @@ docker run --ulimit nofile=66000:66000 \
   -p 3003:3003 \
   -p 3004:8888 \
   -p 8086:8086 \
-  -p 8125:8125/udp \
-  samuelebistoletti/docker-statsd-influxdb-grafana:latest
+  -p <NCS1004 GRPC port>:<NCS1004 GRPC port> \
+  <your id>/<name_of_image>:no-tls
 ```
 
-You can replace `latest` with the desired version listed in changelog file.
-
-To stop the container launch:
-
+TLS
 ```sh
-docker stop docker-statsd-influxdb-grafana
+docker run --ulimit nofile=66000:66000 \
+  -d \
+  --name docker-statsd-influxdb-grafana \
+  -p 3003:3003 \
+  -p 3004:8888 \
+  -p 8086:8086 \
+  -p <NCS1004 GRPC port>:<NCS1004 GRPC port> \
+  <your id>/<name_of_image>:tls
 ```
-
-To start the container again launch:
-
-```sh
-docker start docker-statsd-influxdb-grafana
-```
-
 ## Mapped Ports
 
 ```
