@@ -16,10 +16,16 @@ https://github.com/samuelebistoletti/docker-statsd-influxdb-grafana
 
 ## Quick Start
 To build the image:
+
 1) No TLS:
+```sh
 docker image build -f Dockerfile-notls -t <your id>/<your name of image>:no-tls
+```
+
 2) TLS:
+```sh
 docker image build -f Dockerfile-tls -t <your id>/<your name of image>:tls
+```
 
 To start the container the first time launch:
 
