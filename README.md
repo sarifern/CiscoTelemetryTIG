@@ -11,7 +11,7 @@ This docker image contains the following versions:
 * Telegraf (StatsD): 1.13.3-1
 * Grafana:           6.6.2
 
-This Docker image was based upon the work of Samuele Bistoletti$
+This Docker image was based upon the work of Samuele Bistoletti
 https://github.com/samuelebistoletti/docker-statsd-influxdb-grafana
 
 ## Quick Start
