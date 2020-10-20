@@ -19,7 +19,8 @@ https://github.com/samuelebistoletti/docker-statsd-influxdb-grafana
 First, create your own telegraf.pem and telegraf.key using the following commands:
 
 ```
-openssl genrsa -out rootCA.key 2048openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -extensions v3_ca -out rootCA.pem 
+openssl genrsa -out rootCA.key 2048
+openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -extensions v3_ca -out rootCA.pem 
 openssl genrsa -out telegraf.key 2048
 openssl req -new -key telegraf.key -out telegraf.csr 
 openssl x509 -req -in telegraf.csr -CA rootCA.pem -CAkey telegraf.key -CAcreateserial -out telegraf.pem -days 500 -sha256 
